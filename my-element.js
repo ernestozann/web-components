@@ -1,6 +1,7 @@
 class myElement extends HTMLElement {
 	constructor() {
 		super();
+		this.attachShadow({mode: "open"});
 	}
 	getTemplate() {
 		const template = document.createElement('template');
@@ -25,7 +26,7 @@ class myElement extends HTMLElement {
 		`
 	};
 	render() {
-		this.appendChild(this.getTemplate().content.cloneNode(true))
+		this.shadowRoot.appendChild(this.getTemplate().content.cloneNode(true))
 	};
 	connectedCallback() {
 		this.render();
