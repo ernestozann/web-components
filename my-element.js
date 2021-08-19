@@ -1,27 +1,34 @@
-const template = document.createElement("div");
-template.innerHTML = `
-<style>
-	.texto {
-		color: red;
-	}
-	p {
-		color: blue;
-	}
-</style>
-	<p class="texto">Hola mundo 2!!</p>
-	<p>texto ejemplo para la clase</p>
-`;
-
 class myElement extends HTMLElement {
 	constructor() {
 		super();
-
-		this.p = document.createElement("p");
 	}
+	getTemplate() {
+		const template = document.createElement('template');
+		template.innerHTML = `
+			<section>
+				<h2 class="title">Hola mundo</h2>
+				<div>
+					<p>Soy mas texto ejemplo</p>
+				</div>
+			</section>
+			${this.getStyles()}
+		`;
+		return template;
+	}
+	getStyles() {
+		return `
+			<style>
+				h2 {
+					color: red;
+				}
+			</style>
+		`
+	};
+	render() {
+		this.appendChild(this.getTemplate().content.cloneNode(true))
+	};
 	connectedCallback() {
-		this.p.textContent = "Homa mundo!!";
-		this.appendChild(this.p);
-		this.appendChild(template);
+		this.render();
 	}
 }
 customElements.define('my-element', myElement);
