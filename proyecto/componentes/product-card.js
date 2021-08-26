@@ -4,14 +4,14 @@ class productCard extends HTMLElement {
 		this.attachShadow({ mode:"open" });
 	}
 	static get observedAttributes() {
-		return ["img", "title", "price", "description", "collection"];
+		return ["img", "titulo", "price", "description", "collection"];
 	}
 	attributeChangedCallback(attr, oldVal, newVal) {
 		if (attr === "img") {
 			this.img = newVal;
 		}
-		if (attr === "title") {
-			this.title = newVal;
+		if (attr === "titulo") {
+			this.titulo = newVal;
 		}
 		if (attr === "price") {
 			this.price = newVal;
@@ -32,7 +32,7 @@ class productCard extends HTMLElement {
 				</section>
 				<section class="details">
 					<div class="content">
-						<h2>${this.title}<span>${this.collection}</span></h2>
+						<h2>${this.titulo}<span>${this.collection}</span></h2>
 						<p>${this.description}</p>
 						<h3>${this.price}</h3>
 						<button>Comprar</button>
